@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSC 595: Lab 1 - Bar Graph</title>
+    <style type="text/css">
+    .chart {
+        border: 1px dashed lightgray;
+        fill: slategray;
+        background-color: white;
+    }
+        .bars {
+            opacity: 0.8;
+        }
+        .africa {
+            color: rgba(60, 179, 113, 1);
+            fill: rgba(60, 179, 113, 1);;
+        }
+        .australia {
+            color: rgb(106, 90, 205, 1);
+            fill: rgb(106, 90, 205, 1);
+        }
+        .asia {
+            color: rgba(0, 51, 153, 1);
+            fill: rgba(0, 51, 153, 1);
+        }
+        .europe {
+            color: rgba(153, 77, 0, 1);
+            fill: rgba(153, 77, 0, 1);
+        }
+        .americas {
+            color: rgba(249, 6, 6, 1);
+            fill: rgba(249, 6, 6, 1);
+        }
+        .axes, .ticks {
+            stroke: slategray;
+            stroke-width: 1px;
+        }
+        .tick-text, .labels {
+            font-size: 1.1em;
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .header {
+            color: dimgray;
+            font-size: 1.2em;
+            font-family:'Courier New', Courier, monospace
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <pre>
+        <strong>CSC 595 - Topics in Computer Science (Data Visualization)</strong>
+        Spring 2019
+        Lab 1 - Bar Chart
+        <strong>Author: Nardos Tessema</strong>
+        </pre>
+    </div>
+    <div class="container">
+        <svg class="chart" width="600" height="600">
+            <g transform="translate(90,50)">
+                <g transform="translate(120,0)">
+                    <g class="bars">
+                        <rect class="africa" x="0" y="200" width="30" height="200" />
+                        <rect class="australia" x="40" y="10" width="30" height="390" />
+                        <rect class="asia" x="80" y="100" width="30" height="300" />
+                        <rect class="europe" x="120" y="350" width="30" height="50" />
+                        <rect class="americas" x="160" y="300" width="30" height="100" />
+                    </g>
+                    <g class="labels" transform="translate(10,0)">
+                        <text class="africa" x="0" y="405" transform="rotate(90 0,405)">Africa</text>
+                        <text class="australia" x="40" y="405" transform="rotate(90 40,405)">Australia</text>
+                        <text class="asia" x="80" y="405" transform="rotate(90 80,405)">Asia</text>
+                        <text class="europe" x="120" y="405" transform="rotate(90 120,405)">Europe</text>
+                        <text class="americas" x="160" y="405" transform="rotate(90 160,405)">Americas</text>
+                    </g>
+                </g>
+                <g transform="translate(100,0)">
+                    <g class="axes">
+                        <line x1="0" y1="400" x2="250" y2="400" />
+                        <line x1="0" y1="400" x2="0" y2="0" />
+                    </g>
+                    <g class="ticks">
+                        <line x1="-5" y1="300" x2="0" y2="300" />
+                        <line x1="-5" y1="200" x2="0" y2="200" />
+                        <line x1="-5" y1="100" x2="0" y2="100" />
+                        <line x1="-5" y1="0" x2="0" y2="0" />
+                    </g>
+                    <g class="tick-text" transform="translate(0,8)">
+                        <text x = "-50" y="300">100</text>
+                        <text x = "-50" y="200">200</text>
+                        <text x = "-50" y="100">300</text>
+                        <text x = "-50" y="0">400</text>
+                    </g>
+                </g>
+            </g>
+        </svg>
+    </div>
+</body>
+</html>

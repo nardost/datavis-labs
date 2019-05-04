@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSC 595: Lab 1 - Bar Graph</title>
+    <link href="style.css" rel="stylesheet">
+    <script src="http://d3js.org/d3.v4.min.js"></script>
+    <script type="text/javascript" src="data.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <pre>
+        <strong>CSC 595 - Topics in Computer Science (Data Visualization)</strong>
+        Spring 2019
+        Lab 2 - D3 Bar Chart
+        <strong>Author: Nardos Tessema</strong>
+        </pre>
+    </div>
+    <div class="container">
+        <div id="canvas"></div>
+        <script type="module">
+            import { BarChart } from './d3-bar-chart.js';
+            const properties = { width: 600, height: 600 };
+            const canvasId = 'canvas';
+            const bc = BarChart(canvasId, bar3, properties);
+            bc.draw();
+        </script>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+
+.scatter-plot {
+    background-color: white;
+}
+
+.dot {
+    fill: rgba(82,82,82, .9);
+}
+.line-chart {
+    fill: slategray;
+    background-color: white;
+}
+
+.line {
+    stroke: rgba(82, 82, 82, .9)
+}
+
+.bar-chart {
+    background-color: white;
+}
+.bar {
+    color: rgb(65,182,196);
+    fill: rgb(65,182,196);
+}
+.base-line, .axis, .ticks {
+    stroke: lightgray;
+    stroke-width: 1;
+}
+
+.highlighted {
+    fill: tomato
+}
+
+.pop-up-coordinate {
+    font-size: 1em;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgba(255, 255,255, .9);
+}
+.grid {
+    stroke: #eee;
+    stroke-width: 0.5;
+}
+
+.tick-text,
+.labels {
+    font-size: 1.1em;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.header {
+    color: dimgray;
+    font-size: 1.2em;
+    font-family: 'Courier New', Courier, monospace
+}

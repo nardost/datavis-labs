@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSC 595: Lab 1 - Bar Graph</title>
+    <style type="text/css">
+        .header {
+            color: dimgray;
+            font-size: 1.2em;
+            font-family: 'Courier New', Courier, monospace
+        }
+        .svg {
+            border: 1px dashed lightgray;
+        }
+        .smiley {
+             fill: rgba(255, 255, 0, .9);
+             stroke: rgba(22,0,0,.4);
+             stroke-width: 3px;
+        }
+        .eyeball {
+            fill: rgba(255, 255, 255, .8);
+            stroke: rgb(22, 0, 0, .8);
+            stroke-width: 5px;
+        }
+        .eyebrow {
+            stroke: black;
+            stroke-width: 5px;
+        }
+        .left-eye {
+        }
+        .right-eye {
+        }
+        .iris {
+            fill: rgba(0, 128, 255, .8);
+            stroke: rgb(0, 128, 255, .7);
+            stroke-width: 3px;
+        }
+        .pupil {
+            fill: rgba(255,255,255,1);
+            stroke: rgb(0,0,0,1);
+            stroke-width: 20px;
+        }
+        .mouth {
+
+        }
+        .upper-lip, .mouth-cavity {
+             stroke: rgba(0, 0, 0, .9);
+             stroke-width: 3px;
+        }
+        .mouth-cavity {
+             fill: rgba(0, 0, 0, .3);
+        }
+        .tooth {
+            fill: white;
+            stroke: black;
+            stroke-width: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <pre>
+        <strong>CSC 595 - Topics in Computer Science (Data Visualization)</strong>
+        Spring 2019
+        Lab 1 - Smiley
+        <strong>Author: Nardos Tessema</strong>
+        </pre>
+    </div>
+    <div class="container">
+        <svg width="600" height="600" class="svg">
+            <g class="smiley" transform="translate(300,300)">
+                <ellipse class="face" cx="0" cy="0" rx="200" ry="205" />
+                <g class="face-elements" transform="translate(0,30)">
+                    <g class="eyes">
+                        <g class="right-eye">
+                            <path class=" eyebrow r-eyebrow" d="M -20 -120 s -40 -80 -100 -30" />
+                            <ellipse class="eyeball r-eyeball" cx="-80" cy="-80" rx="50" ry="60" />
+                            <g transform="translate(0, 0)">
+                                <ellipse class=" iris r-iris" cx="-80" cy="-80" rx="40" ry="40" />
+                                <ellipse class=" pupil r-pupil" cx="-80" cy="-80" rx="20" ry="20" />
+                            </g>
+                        </g>
+                        <g class="left-eye" transform="">
+                            <path class=" eyebrow l-eyebrow" d="M 20 -120 s 40 -80 100 -30" />
+                            <ellipse class="eyeball l-eyeball" cx="80" cy="-80" rx="50" ry="60" />
+                            <g transform="translate(0, 0)">
+                                <ellipse class="iris l-iris" cx="80" cy="-80" rx="40" ry="40" />
+                                <ellipse class=" pupil l-pupil" cx="80" cy="-80" rx="20" ry="20" />
+                            </g>
+                        </g>
+                    </g>
+                    <g class="mouth">
+                        <path class="mouth-cavity" d="M -100 50 a 300,600 0, 0, 0, 200, 0" />
+                        <path class="upper-lip" d="M -100 50 a 800,300 0, 0, 0, 200, 0" />
+                        <g class="teeth" transform="translate(0, 53)">
+                            <polyline class="tooth" points="10,0 10,50 60,50 60,0" />
+                            <polyline class="tooth" points="-10,0 -10,50 -60,50 -60,0" />
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </svg>
+    </div>
+</body>
+
+</html>
