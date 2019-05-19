@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSC 595: Lab 4 - Dispatch</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v0.3.min.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <pre>
+        <strong>CSC 595 - Topics in Computer Science (Data Visualization)</strong>
+        Spring 2019
+        Lab 4 - Dispatch
+        <strong>Author: Nardos Tessema</strong>
+        </pre>
+    </div>
+    <div class="container">
+        <svg id="canvas1"></svg>
+        <svg id="canvas2"></svg>
+        <script type="module">
+            import { Force } from './graph.js';
+            import { Matrix } from './matrix.js';
+            const graphCanvas = '#canvas2';
+            const matrixCanvas = '#canvas1';
+            const data = 'graph.json';
+            const graphProperties = { charge: -300, distance: 60 };
+            const matrixProperties = {};
+            const canvasProperties = { width: 480, height: 480, flags: {} };
+            let graph = new Force(graphCanvas, data, canvasProperties, graphProperties);
+            const matrix = new Matrix(matrixCanvas, data, canvasProperties)
+            matrix.draw({selected: null});
+            graph.draw({newGraph: true});
+            matrix.dispatch.on('cellClicked', (node) => {
+                d3.select(graphCanvas).selectAll('g').remove();
+                graph.draw({ focusedNode: node, newGraph: (node ==null) ? true : false });
+            });
+            graph.dispatch.on('nodeClicked', (node) => {
+                d3.select(matrixCanvas).selectAll('g').transition().remove();
+                matrix.draw({selected: node})
+            });
+        </script>
+    </div>
+    <div class="footer">
+        The same graph data is represented by an adjacency matrix and a force layout graph.
+        <br>The matrix and the force layout graph send dispatches to each other as listed below:
+        <ul>
+            <li>Clicking on a cell in the matrix highlights the adjacent nodes in the graph.</li>
+            <li>Clicking on a label in the matrix highlights the corresponding node in the graph.</li>
+            <li>Clicking on a node in the graph highlights the corresponding node in the matrix with gray.
+                <br>(The cells whose adjacent nodes are not connected are grayed. The colors representing links are preserved.)</li>
+            <li>Clicking on the refresh button at the top left corner of the matrix redraws the graph and the matrix.<br></li>
+        </ul>
+    </div>
+</body>
+
+</html>

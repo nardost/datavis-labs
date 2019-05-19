@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://d3js.org/d3.v2.min.js?2.9.3"></script>
+    <title>CSC 595: Lab 3 - Graph</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="header">
+        <pre>
+        <strong>CSC 595 - Topics in Computer Science (Data Visualization)</strong>
+        Spring 2019
+        Lab 3 - D3 Graph
+        <strong>Author: Nardos Tessema</strong>
+        </pre>
+    </div>
+    <div class="container">
+        <div id="canvas"></div>
+        <script type="module">
+            import { Graph } from './graph-d3v3.js';
+
+            const canvas = 'canvas';
+            const data = 'graph.json';
+            const properties = { width: 960, height: 960, flags: {} };
+            const graph = new Graph(canvas, data, properties);
+            graph.draw();
+        </script>
+    </div>
+</body>
+
+</html>
