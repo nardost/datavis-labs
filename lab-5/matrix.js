@@ -20,7 +20,7 @@ export function Matrix(canvas, adjacency, canvasProperties) {
             const nodes = adjacency.nodes;
             const links = adjacency.links;
             const common = links.map(link => link.weight);
-            const colorScale = d3.scaleSequential(d3.interpolateReds).domain([min(common), max(common)]);
+            const colorScale = d3.scaleSequential(d3.interpolateViridis).domain([min(common), max(common)]);
             const dimension = nodes.length;
             const horizontalLabelHeight = 50;
             const verticalLabelWidth = 50;
@@ -46,19 +46,7 @@ export function Matrix(canvas, adjacency, canvasProperties) {
                 matrix[link.source * dimension + link.target].z = true;
                 matrix[link.target * dimension + link.source].z = true;
             });
-            svg
-                .append("defs")
-                .append("pattern")
-                .attr("id", "refresh")
-                .attr("x", 0)
-                .attr("y", 0)
-                .attr("patternUnits", "objectBoundingBox")
-                .attr("height", 1)
-                .attr("width", 1)
-                .append("image")
-                .attr("xlink:href", "refresh.svg")
-                .attr("height", verticalLabelWidth)
-                .attr("width", horizontalLabelHeight);
+
 
             chart.append('g')
                 .selectAll('rect').data(matrix).enter()
@@ -70,6 +58,7 @@ export function Matrix(canvas, adjacency, canvasProperties) {
                     .attr('x', (d, k) => d.x * cellWidth)
                     .attr('y', (d, k) => d.y * cellHeight)
                     .style('fill', cellColor)
+                    .style('cursor', 'pointer')
                     .on('click', d => cellClicked(this, d));
 
             svg

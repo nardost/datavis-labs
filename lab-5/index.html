@@ -16,8 +16,11 @@
         Spring 2019
         Lab 5 - Flask
         <strong>Author: Nardos Tessema</strong>
-
-        <button onclick="location.reload()">Click to generate a random number of connections between nodes.</button>
+        <strong>
+        <code>PYTHON VERSION: 3.6.3</code>
+        <code>REQUIRED PYTHON MODULES: flask, random, itertools</code><br/>
+        </strong>
+        <button onclick="location.reload()" class="btn">Generate a random set of links</button>
         </pre>
     </div>
     <div class="container">
@@ -51,14 +54,12 @@
         </script>
     </div>
     <div class="footer">
-        The same graph data is represented by an adjacency matrix and a force layout graph.
-        <br>The matrix and the force layout graph send dispatches to each other as listed below:
         <ul>
+            <li>Clicking the top button reloads the page</li>
+            <li>Each time the page loads, the server app generates a random set of adjacencies between the 26 nodes.</li>
+            <li>The same graph data is represented by an adjacency matrix and a force layout graph.</li>
             <li>Clicking on a cell in the matrix highlights the adjacent nodes in the graph.</li>
             <li>Clicking on a label in the matrix highlights the corresponding node in the graph.</li>
-            <li>Clicking on a node in the graph highlights the corresponding node in the matrix with gray.
-                <br>(The cells whose adjacent nodes are not connected are grayed. The colors representing links are preserved.)</li>
-            <li>Clicking on the refresh button at the top left corner of the matrix redraws the graph and the matrix.<br></li>
         </ul>
     </div>
 </body>

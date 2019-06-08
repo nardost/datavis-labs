@@ -1,6 +1,21 @@
 from flask import Flask, send_from_directory, Response, json
 import random
+import itertools
 app = Flask(__name__)
+
+def random_links(number):
+    nodes = [i for i in range(0, 26)]
+    all_possible_links = list(itertools.combinations(nodes, 2))
+    random.shuffle(all_possible_links)
+    links = []
+    for i in range(number):
+        link = {"source": all_possible_links[i][0], "target": all_possible_links[i][1], "weight": random.randint(1, 100)}
+        links.append(link)
+    return links
+
+@app.route('/')
+def index():
+    return send_from_directory('.', 'index.html')
 
 @app.route('/<path:path>')
 def startup(path):
@@ -8,141 +23,18 @@ def startup(path):
 
 @app.route("/graph/<number>")
 def get_json(number):
-    nodes = [
-    { "name": "A", "friends": 300 },
-    { "name": "B", "friends": 300 },
-    { "name": "C", "friends": 300 },
-    { "name": "D", "friends": 300 },
-    { "name": "E", "friends": 300 },
-    { "name": "F", "friends": 300 },
-    { "name": "G", "friends": 300 },
-    { "name": "H", "friends": 300 },
-    { "name": "I", "friends": 300 },
-    { "name": "J", "friends": 300 },
-    { "name": "K", "friends": 300 },
-    { "name": "L", "friends": 300 },
-    { "name": "M", "friends": 300 },
-    { "name": "N", "friends": 300 },
-    { "name": "O", "friends": 300 },
-    { "name": "P", "friends": 300 },
-    { "name": "Q", "friends": 300 },
-    { "name": "R", "friends": 300 },
-    { "name": "S", "friends": 300 },
-    { "name": "T", "friends": 300 },
-    { "name": "U", "friends": 300 },
-    { "name": "V", "friends": 300 },
-    { "name": "W", "friends": 300 },
-    { "name": "X", "friends": 300 },
-    { "name": "Y", "friends": 300 },
-    { "name": "Z", "friends": 300 }
-    ] 
-    links = [
-    { "source": 12, "target": 18, "weight": 29 },
-    { "source": 20, "target": 14, "weight": 9 },
-    { "source": 15, "target": 17, "weight": 26 },
-    { "source": 19, "target": 4, "weight": 60 },
-    { "source": 24, "target": 19, "weight": 42 },
-    { "source": 10, "target": 14, "weight": 11 },
-    { "source": 23, "target": 12, "weight": 49 },
-    { "source": 1, "target": 3, "weight": 2 },
-    { "source": 2, "target": 20, "weight": 17 },
-    { "source": 21, "target": 7, "weight": 56 },
-    { "source": 4, "target": 7, "weight": 44 },
-    { "source": 24, "target": 6, "weight": 67 },
-    { "source": 12, "target": 24, "weight": 38 },
-    { "source": 21, "target": 6, "weight": 53 },
-    { "source": 7, "target": 13, "weight": 10 },
-    { "source": 18, "target": 7, "weight": 10 },
-    { "source": 25, "target": 16, "weight": 11 },
-    { "source": 8, "target": 20, "weight": 4 },
-    { "source": 3, "target": 9, "weight": 47 },
-    { "source": 4, "target": 13, "weight": 8 },
-    { "source": 18, "target": 21, "weight": 55 },
-    { "source": 9, "target": 19, "weight": 8 },
-    { "source": 18, "target": 10, "weight": 8 },
-    { "source": 7, "target": 21, "weight": 11 },
-    { "source": 25, "target": 10, "weight": 40 },
-    { "source": 24, "target": 7, "weight": 25 },
-    { "source": 14, "target": 1, "weight": 11 },
-    { "source": 11, "target": 15, "weight": 47 },
-    { "source": 2, "target": 6, "weight": 34 },
-    { "source": 2, "target": 20, "weight": 67 },
-    { "source": 22, "target": 9, "weight": 40 },
-    { "source": 0, "target": 2, "weight": 49 },
-    { "source": 15, "target": 19, "weight": 12 },
-    { "source": 14, "target": 0, "weight": 32 },
-    { "source": 18, "target": 6, "weight": 54 },
-    { "source": 1, "target": 14, "weight": 3 },
-    { "source": 2, "target": 21, "weight": 12 },
-    { "source": 24, "target": 0, "weight": 26 },
-    { "source": 13, "target": 3, "weight": 53 },
-    { "source": 17, "target": 23, "weight": 22 },
-    { "source": 17, "target": 16, "weight": 7 },
-    { "source": 11, "target": 4, "weight": 23 },
-    { "source": 20, "target": 1, "weight": 26 },
-    { "source": 9, "target": 21, "weight": 20 },
-    { "source": 0, "target": 21, "weight": 5 },
-    { "source": 3, "target": 15, "weight": 17 },
-    { "source": 3, "target": 16, "weight": 69 },
-    { "source": 0, "target": 21, "weight": 2 },
-    { "source": 21, "target": 22, "weight": 33 },
-    { "source": 18, "target": 21, "weight": 10 },
-    { "source": 0, "target": 17, "weight": 11 },
-    { "source": 10, "target": 13, "weight": 7 },
-    { "source": 3, "target": 10, "weight": 29 },
-    { "source": 13, "target": 18, "weight": 17 },
-    { "source": 0, "target": 2, "weight": 12 },
-    { "source": 25, "target": 24, "weight": 41 },
-    { "source": 13, "target": 16, "weight": 59 },
-    { "source": 23, "target": 18, "weight": 23 },
-    { "source": 6, "target": 16, "weight": 11 },
-    { "source": 14, "target": 17, "weight": 20 },
-    { "source": 12, "target": 15, "weight": 10 },
-    { "source": 2, "target": 8, "weight": 51 },
-    { "source": 15, "target": 22, "weight": 56 },
-    { "source": 18, "target": 25, "weight": 72 },
-    { "source": 0, "target": 3, "weight": 4 },
-    { "source": 6, "target": 4, "weight": 49 },
-    { "source": 12, "target": 17, "weight": 55 },
-    { "source": 20, "target": 4, "weight": 2 },
-    { "source": 3, "target": 2, "weight": 22 },
-    { "source": 3, "target": 18, "weight": 1 },
-    { "source": 3, "target": 15, "weight": 14 },
-    { "source": 12, "target": 2, "weight": 31 },
-    { "source": 1, "target": 25, "weight": 36 },
-    { "source": 20, "target": 11, "weight": 36 },
-    { "source": 17, "target": 5, "weight": 22 },
-    { "source": 24, "target": 17, "weight": 56 },
-    { "source": 6, "target": 23, "weight": 17 },
-    { "source": 10, "target": 15, "weight": 22 },
-    { "source": 19, "target": 5, "weight": 15 },
-    { "source": 21, "target": 10, "weight": 66 },
-    { "source": 17, "target": 3, "weight": 1 },
-    { "source": 5, "target": 6, "weight": 13 },
-    { "source": 6, "target": 11, "weight": 6 },
-    { "source": 12, "target": 20, "weight": 48 },
-    { "source": 22, "target": 15, "weight": 56 },
-    { "source": 11, "target": 23, "weight": 14 },
-    { "source": 19, "target": 12, "weight": 10 },
-    { "source": 4, "target": 24, "weight": 9 },
-    { "source": 21, "target": 20, "weight": 20 },
-    { "source": 16, "target": 1, "weight": 22 },
-    { "source": 19, "target": 3, "weight": 9 },
-    { "source": 5, "target": 13, "weight": 57 },
-    { "source": 11, "target": 0, "weight": 19 },
-    { "source": 18, "target": 25, "weight": 8 },
-    { "source": 12, "target": 2, "weight": 34 }
-    ]
-    l = []
-    choices = list(range(93))
-    random.shuffle(choices)
-    for i in range(int(number)):
-        l.append(links[choices[i]])
+    letters = []
+    alpha = 'A'
+    for i in range(0, 26):
+        letters.append(alpha)
+        alpha = chr(ord(alpha) + 1)
     graph = {
-        "nodes": nodes,
-        "links": l
+        "nodes": [{"name": letter, "value": random.randint(0, 26)} for letter in letters],
+        "links": random_links(int(number))
     }
-
     jsn = json.dumps(graph)
     resp = Response(jsn, status=200, mimetype='application/json')
+    resp.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    resp.headers['Pragma'] = 'no-cache'
+    resp.headers['Expires'] = '0'
     return resp
