@@ -19,7 +19,10 @@ def index():
 
 @app.route('/<path:path>')
 def startup(path):
-    return send_from_directory('.', path)
+    if(path != 'server.py'):
+        return send_from_directory('.', path)
+    else:
+        return send_from_directory('.', '404.html')
 
 @app.route("/graph/<number>")
 def get_json(number):
